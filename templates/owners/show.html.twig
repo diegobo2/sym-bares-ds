@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Owners{% endblock %}
+
+{% block body %}
+    <h1>Owners</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ owner.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ owner.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ owner.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ owner.phone }}</td>
+            </tr>
+            <tr>
+                <th>Dni</th>
+                <td>{{ owner.dni }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('owners_index') }}">back to list</a>
+
+    <a href="{{ path('owners_edit', {'id': owner.id}) }}">edit</a>
+
+    {{ include('owners/_delete_form.html.twig') }}
+{% endblock %}

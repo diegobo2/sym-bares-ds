@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}SOS Hosteleria{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet"
+                  href="{{ asset('build/app.css')}}">
+        {% endblock %}
+    </head>
+    <body>
+        
+        {% block navbar %}
+            
+            {#
+            
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% include 'navbar/private.html.twig' %}
+                
+            {% else %}
+                {% include 'navbar/public.html.twig' %}
+                
+            {% endif %}
+            
+            #}
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <nav class="navbar navbar-inverse" role="navigation">
+                    <ul class="navbar-header">
+                    <button type="button" class="btn btn-dark">
+                        <a href="{{ path("bares_index") }}">Ver lista de bares</a>
+                    </button>
+                    
+                    <button type="button" class="btn btn-dark">
+                        <a href="{{ path("owners_index") }}">Ver lista de Propietarios</a>
+                    </button>
+                    
+                    <button type="button" class="btn btn-dark">
+                        <a href="{{ path("bares_new") }}">Añadir un Bar</a>
+                    </button>
+                    
+                    <button type="button" class="btn btn-dark">
+                        <a href="{{ path('owners_new') }}">Añadir un propietario</a>
+                    </button>
+                        
+                    </ul>
+                <!--form action="{#{ path("search_books") }#}">
+                    <input type="text" name="searchTerm"
+                           class="form-control" placeholder="Buscar...">
+                    <button class="btn-primary">Buscar</button>
+                </form-->
+             </nav>
+                </div>
+            </div>
+            
+                    
+        {% endblock %}
+        
+        {% block body %}
+            
+            <h1>Lista de Bares</h1>
+            
+    <table class="table">
+        <thead>
+            <tr>                
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Pequeña descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bare in bares %}
+            <tr>
+                <td>{{ bare.imagen }}</td>
+                <td>{{ bare.nombre }}</td>
+                <td>{{ bare.shortDescription }}</td>
+                
+                <td>
+                    <a href="{{ path('bares_show', {'id': bare.id}) }}">Detalles</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No hay bares en la BBDD</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+            
+        {% endblock %}
+        
+        {% block javascripts %}
+            <script src="{{ asset('build/app.js')}}"></script>
+        {% endblock %}
+    </body>
+    <footer class="footer">
+        {% block footer %}
+            
+        {% endblock %}
+    </footer>
+</html>

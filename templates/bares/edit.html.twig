@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Esitar Bar{% endblock %}
+
+{% block body %}
+    <h1>Edit Bares</h1>
+
+    {{ include('bares/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('bares_index') }}">back to list</a>
+
+    {{ include('bares/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bares index{% endblock %}
+
+{% block body %}
+    <h1>Bares index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Rating</th>
+                <th>ShortDescription</th>
+                <th>Description</th>
+                <th>Imagen</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bare in bares %}
+            <tr>
+                <td>{{ bare.id }}</td>
+                <td>{{ bare.nombre }}</td>
+                <td>{{ bare.rating }}</td>
+                <td>{{ bare.shortDescription }}</td>
+                <td>{{ bare.description }}</td>
+                <td>{{ bare.imagen }}</td>
+                <td>
+                    <a href="{{ path('bares_show', {'id': bare.id}) }}">show</a>
+                    <a href="{{ path('bares_edit', {'id': bare.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('bares_new') }}">Create new</a>
+{% endblock %}

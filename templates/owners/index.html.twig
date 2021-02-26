@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Owners index{% endblock %}
+
+{% block body %}
+    <h1>Lista de Propietarios</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Dni</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for owner in owners %}
+            <tr>
+                <td>{{ owner.nombre }}</td>
+                <td>{{ owner.email }}</td>
+                <td>{{ owner.phone }}</td>
+                <td>{{ owner.dni }}</td>
+                <!--td>
+                    <a href="{{ path('owners_show', {'id': owner.id}) }}">show</a>
+                    <a href="{{ path('owners_edit', {'id': owner.id}) }}">edit</a>
+                </td-->
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

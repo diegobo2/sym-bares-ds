@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Bar{% endblock %}
+
+{% block body %}
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto mt-3">
+                <h1>Nuevo Bar</h1>
+                <form class="form">
+        
+                    {{ include('bares/_form.html.twig') }}
+    
+                </form> 
+            </div>
+        </div>
+    </div>
+    
+
+    
+{% endblock %}

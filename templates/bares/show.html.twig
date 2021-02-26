@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bares{% endblock %}
+
+{% block body %}
+    <div class="row">
+        
+        <div class="card col-6" style="width: 18rem;">
+        <img class="card-img-top" src="{{ bare.imagen }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ bare.nombre }} ({{ bare.rating }})</h5>
+            <p class="card-text">{{ bare.shortDescription }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ bare.description }}</li>
+        </ul>
+        <div class="card-body">
+            <button type="button" class="btn btn-warning">
+                <a href="{{ path('bares_edit', {'id': bare.getId()}) }}">Editar datos del bar</a>
+            </button>
+            {{ include('bares/_delete_form.html.twig') }}
+        </div>
+    </div>
+    {% if bare.owner is empty %}
+        <h5>Este bar no tiene un propietario asignado</h5>
+                <button type="button" class="btn btn-dark">
+                        <a href="{{ path('owners_new') }}">Añadir un propietario a este bar</a>
+                </button>
+    {% else %}
+                
+                
+        <div class="card col-6" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Datos del propietario:</h5>
+            <p class="card-text">{{ bare.owner[0].getNombre() }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"></li>
+            <li class="list-group-item">Dni: {{ bare.owner[0].getDni() }}</li>
+            <li class="list-group-item">Email: {{ bare.owner[0].getEmail() }}</li>
+            <li class="list-group-item">Teléfono: {{ bare.owner[0].getPhone() }}</li>        
+        </ul>
+        <div class="card-body">
+            <button type="button" class="btn btn-warning">
+                <a href="{{ path('owners_edit', {'id': bare.owner[0].getId()}) }}">Editar datos de propieatario</a>    
+            </button>
+        </div>
+        </div> 
+                
+    {% endif %}
+            
+        <button type="button" class="btn btn-dark">
+            <a href="{{ path('bares_index') }}">Volver a lista de bares</a>
+        </button>
+        
+        
+    </div>
+     
+
+    
+{% endblock %}
